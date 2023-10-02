@@ -14,7 +14,7 @@ const initialFormData = {
 
 const Login = () => {
   const navigate = useNavigate()
-  const [isError, setIsError] = useState('')
+  const [status, setStatus] = useState('')
   const [formData, setFormData] = useState(initialFormData)
 
   const handleBack = () => {
@@ -37,8 +37,9 @@ const Login = () => {
     e.preventDefault()
     try {
       registration(formData.fullName, formData.email, formData.password)
+      setStatus('')
     } catch (err: any) {
-      setIsError(err.message)
+      setStatus(err.message)
     }
   }
 
@@ -49,7 +50,7 @@ const Login = () => {
 
   return (
     <main className='flex justify-center items-center w-[100vw] h-[100vh] bg-gradient-to-bl from-emerald-500 to-emerald-900'>
-      <form className='relative flex flex-col w-[300px] md:w-[450px] bg-gray-100 rounded-2xl px-[20px] py-[40px] md:p-[50px] shadow-lg justify-between'>
+      <form className='relative flex flex-col w-[300px] md:w-[450px] bg-neutral-100 rounded-2xl px-[30px] py-[40px] md:py-[60px] md:px-[40px] shadow-xl justify-between'>
         <h2
           className=' font-bold text-3xl text-center top-0 mb-4 px-4 '
           data-testid='register'>
@@ -113,15 +114,15 @@ const Login = () => {
           data-testid='login-btn'
           className={`py-3 px-4 rounded-3xl text-white bg-gradient-to-r from-emerald-600 to-emerald-900 ${
             isDisabled ? 'opacity-[0.5]' : 'opacity-[1] hover:opacity-70'
-          } transition duration-700 ease-in-out`}>
+          } transition duration-700 ease-in-out shadow-md`}>
           Sign up
         </button>
-        {isError && (
-          <p className='text-sm text-red-500  text-center py-2'>{isError}</p>
-        )}
+
+        <p className='text-sm text-red-500 text-center py-2'>{status}</p>
+
         <div
           onClick={handleBack}
-          className='absolute bottom-[15px] left-[20px] md:left-[50px] md:bottom-[40px] md:text-base flex items-center text-sm text-gray-500 hover:text-emerald-600 transition-colors duration-500 cursor-pointer'>
+          className='absolute bottom-[30px] left-[30px] md:left-[50px] md:bottom-[40px] md:text-base flex items-center text-sm text-gray-500 hover:text-emerald-600 transition-colors duration-500 cursor-pointer'>
           <IoMdArrowBack size={15} className='mr-[2px]' /> back
         </div>
       </form>

@@ -13,7 +13,7 @@ const initialFormData = {
 
 const Login = () => {
   const navigation = useNavigate()
-  const [isError, setIsError] = useState('')
+  const [status, setStatus] = useState('')
   const [formData, setFormData] = useState(initialFormData)
 
   // Listening for the user to be logged in
@@ -44,7 +44,7 @@ const Login = () => {
     try {
       handleLogin(formData.email, formData.password)
     } catch (err: any) {
-      setIsError(err.message)
+      setStatus('Wrong Email or Password')
     }
   }
 
@@ -56,9 +56,10 @@ const Login = () => {
   const isDisabled = !(
     formData.password.length >= 6 && formData.email.length >= 8
   )
+
   return (
     <main className='flex justify-center items-center w-[100vw] h-[100vh] bg-gradient-to-bl from-emerald-500 to-emerald-900'>
-      <form className='relative flex flex-col w-[300px] md:w-[450px] bg-gray-100 rounded-2xl p-[20px] md:p-[50px] shadow-lg justify-between '>
+      <div className='relative flex flex-col w-[300px] md:w-[450px] bg-gray-100 rounded-2xl  px-[30px] py-[40px] md:py-[60px] md:px-[40px] shadow-lg justify-between '>
         <h2 className=' font-bold text-3xl text-center top-0 mb-4 px-4'>
           Login
         </h2>
@@ -101,7 +102,7 @@ const Login = () => {
           <p
             onClick={forgotPass}
             data-testid='forgot'
-            className='text-right text-sm hover:text-emerald-600 cursor-pointer py-1'>
+            className='text-right text-sm hover:text-emerald-600  transition-colors duration-500 cursor-pointer py-1'>
             Forgot password?
           </p>
         </div>
@@ -109,7 +110,7 @@ const Login = () => {
           onClick={handleSubmit}
           disabled={isDisabled}
           data-testid='login-btn'
-          className={`mt-4 py-3 px-4 rounded-3xl text-white bg-gradient-to-r from-emerald-600 to-emerald-900 ${
+          className={`mt-4 py-3 px-4 rounded-3xl text-white bg-gradient-to-r from-emerald-600 to-emerald-900 shadow-md ${
             isDisabled ? 'opacity-[0.5]' : 'opacity-[1] hover:opacity-80'
           } transition duration-700 ease-in-out`}>
           Login
@@ -123,18 +124,18 @@ const Login = () => {
           onClick={handleRegister}
           data-testid='sign-up-btn'
           className={` py-3 px-4 rounded-3xl text-white bg-gradient-to-r from-emerald-600 to-emerald-900 
-             hover:opacity-80 transition duration-700 ease-in-out cursor-pointer`}>
+             hover:opacity-80 transition duration-700 ease-in-out cursor-pointer shadow-md`}>
           Sign up
         </button>
         <p className='text-sm text-center'>
           Sign up if you don't have an account.
         </p>
-        {isError && (
+        {status && (
           <p className='text-sm text-red-700 mt-2 text-center font-bold'>
-            {isError}
+            {status}
           </p>
         )}
-      </form>
+      </div>
     </main>
   )
 }

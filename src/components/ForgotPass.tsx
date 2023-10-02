@@ -14,7 +14,9 @@ const ForgotPass = () => {
   const [email, setEmail] = useState('')
 
   const handlePasswordRecovery = async () => {
+    setStatus(null)
     const response = await passwordReset(email)
+    setEmail('')
     setStatus(response)
   }
 
@@ -30,9 +32,11 @@ const ForgotPass = () => {
 
   return (
     <main className='flex justify-center items-center w-[100vw] h-[100vh] bg-gradient-to-bl from-emerald-500 to-emerald-900'>
-      <div className='relative flex flex-col w-[300px] md:w-[450px] bg-gray-100 rounded-2xl px-[20px] py-[40px] md:p-[50px] shadow-lg justify-between'>
-        <h2 className=' font-bold text-2xl md:text-3xl text-center top-0 mb-2 md:mb-4 px-4'>
-          Password Recovery
+      <div className='relative flex flex-col w-[300px] md:w-[450px] bg-gray-100 rounded-2xl  px-[30px] py-[40px] md:py-[60px] md:px-[40px] shadow-lg justify-between'>
+        <h2
+          className=' font-bold text-2xl md:text-3xl text-center top-0 mb-2 md:mb-4 px-4'
+          data-testid='forgot-pass'>
+          Reset Password
         </h2>
 
         <div className='text-gray-400 focus-within:text-emerald-600 transition-colors duration-500 px-1'>
@@ -67,9 +71,10 @@ const ForgotPass = () => {
             {status?.message}
           </p>
         )}
+
         <div
           onClick={handleBack}
-          className='absolute bottom-[15px] left-[20px] md:left-[50px] md:bottom-[40px] md:text-base flex items-center text-sm text-gray-500 hover:text-emerald-600 transition-colors duration-500 cursor-pointer'>
+          className='absolute bottom-[30px] left-[30px] md:left-[50px] md:bottom-[40px] ] md:text-base flex items-center text-sm text-gray-500 hover:text-emerald-600 transition-colors duration-500 cursor-pointer '>
           <IoMdArrowBack size={15} className='mr-[2px]' /> back
         </div>
       </div>

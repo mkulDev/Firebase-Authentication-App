@@ -22,10 +22,11 @@ const app = initializeApp(firebaseConfig)
 export const auth = getAuth()
 
 export const handleLogin = (email: string, password: string) => {
-  signInWithEmailAndPassword(auth, email, password).catch((error) => {
-    const errorMessage = error.message
-    return errorMessage
-  })
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {})
+    .catch((error) => {
+      const errorMessage = error.message
+    })
 }
 
 export const registration = async (
