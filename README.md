@@ -1,6 +1,7 @@
 ## Firebase Authentication App
 
 This is a simple authentication app built using Firebase and React. Users can register, log in, recover their password, and access a landing page after successful login.
+You can see live demo [here](https://authentication-app-by-mkul.netlify.app)
 
 Prerequisites
 Before you begin, ensure you have met the following requirements:
